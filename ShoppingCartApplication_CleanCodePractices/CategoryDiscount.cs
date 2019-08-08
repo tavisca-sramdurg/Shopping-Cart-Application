@@ -11,5 +11,11 @@ namespace ShoppingCartApplication_CleanCodePractices
         {
             DiscountPercentage = discountPercentage;
         }
+
+        //public int CalculateDiscountOnBill(int cost, IProduct product)
+        //{
+        //    int costWithDiscount = cost * (100 - (int)product.category) / 100;
+        //    return costWithDiscount;
+        //}
     }
 }

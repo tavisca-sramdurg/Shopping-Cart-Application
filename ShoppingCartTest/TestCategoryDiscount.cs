@@ -1,26 +1,52 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Xunit;
 using ShoppingCartApplication_CleanCodePractices;
 
 namespace ShoppingCartTest
 {
-    public class ShoppingCartTest
+    public class TestCategoryDiscount
     {
         IProduct product1, product2, product3;
 
         Cart cart;
 
-        public ShoppingCartTest()
+        [Fact]
+        public void Five_percent_discount_should_get_applied_for_sports()
         {
-           
+            //Arrange
+            product1 = new Product("Football", 100, 101, Category.Sport);
+
+            /*
+             IDiscount discountType;
+             string type = Console.ReadLine();
+             switch(type)
+             {
+                case "Category":
+                    discountType = new CategoryDiscount();
+                    break;
+                case "Fixed":
+                    discountType = new CartDiscount();
+                    break;
+            }*/
+
+            IDiscount discountType = new CategoryDiscount((int)Category.Sport);
+            cart = new Cart(discountType);
+
+            //Act
+            cart.AddItemToCart(cart.cartItemList, product1, 1);
+            int bill = cart.GetTotalBill();
+            //Assert
+            Assert.Equal(95, bill);
         }
 
         [Fact]
-        public void Test_if_item_is_getting_added_to_cart()
+        public void Ten_percent_discount_should_get_applied_for_Education()
         {
             //Arrange
-            product1 = new Product("Mobile", 15000, 101, Category.Electronics);
-            
+            product1 = new Product("Book", 100, 101, Category.Education);
+
             /*
              IDiscount discountType;
              string type = Console.ReadLine();
@@ -33,22 +59,22 @@ namespace ShoppingCartTest
                     discountType = new CartDiscount();
                     break;
             }*/
-             
-            IDiscount discountType = new CartDiscount();
+
+            IDiscount discountType = new CategoryDiscount((int)Category.Education);
             cart = new Cart(discountType);
 
             //Act
             cart.AddItemToCart(cart.cartItemList, product1, 1);
-
+            int bill = cart.GetTotalBill();
             //Assert
-            Assert.Equal(1, cart.cartItemList.Count);
+            Assert.Equal(90, bill);
         }
 
         [Fact]
-        public void Test_if_item_is_getting_removed_from_cart()
+        public void Fifteen_percent_discount_should_get_applied_for_Dairy()
         {
             //Arrange
-            product1 = new Product("Mobile", 15000, 101, Category.Electronics);
+            product1 = new Product("Tofu", 100, 101, Category.Dairy);
 
             /*
              IDiscount discountType;
@@ -63,22 +89,21 @@ namespace ShoppingCartTest
                     break;
             }*/
 
-            IDiscount discountType = new CartDiscount();
+            IDiscount discountType = new CategoryDiscount((int)Category.Dairy);
             cart = new Cart(discountType);
 
             //Act
             cart.AddItemToCart(cart.cartItemList, product1, 1);
-            cart.RemoveItemFromCart(cart.cartItemList, product1, 1);
-
+            int bill = cart.GetTotalBill();
             //Assert
-            Assert.Equal(0, cart.cartItemList.Count);
+            Assert.Equal(85, bill);
         }
 
         [Fact]
-        public void Cart_item_quantity_should_get_updated_if_item_already_exists_while_adding()
+        public void Fifty_percent_discount_should_get_applied_for_Clothing()
         {
             //Arrange
-            product1 = new Product("Mobile", 15000, 101, Category.Electronics);
+            product1 = new Product("Chinos", 100, 101, Category.Clothing);
 
             /*
              IDiscount discountType;
@@ -93,22 +118,21 @@ namespace ShoppingCartTest
                     break;
             }*/
 
-            IDiscount discountType = new CartDiscount();
+            IDiscount discountType = new CategoryDiscount((int)Category.Clothing);
             cart = new Cart(discountType);
 
             //Act
             cart.AddItemToCart(cart.cartItemList, product1, 1);
-            cart.AddItemToCart(cart.cartItemList, product1, 1);
-
+            int bill = cart.GetTotalBill();
             //Assert
-            Assert.Equal(1, cart.cartItemList.Count);
+            Assert.Equal(50, bill);
         }
 
-        public void Cart_item_quantity_should_get_updated_if_item_already_exists_while_removing()
+        [Fact]
+        public void Fifty_percent_discount_should_get_applied_for_Electronics()
         {
             //Arrange
-            product1 = new Product("Mobile", 15000, 101, Category.Electronics);
-            product1 = new Product("NCERT", 500, 102, Category.Education);
+            product1 = new Product("Chinos", 100, 101, Category.Electronics);
 
             /*
              IDiscount discountType;
@@ -123,16 +147,14 @@ namespace ShoppingCartTest
                     break;
             }*/
 
-            IDiscount discountType = new CartDiscount();
+            IDiscount discountType = new CategoryDiscount((int)Category.Electronics);
             cart = new Cart(discountType);
 
             //Act
-            cart.AddItemToCart(cart.cartItemList, product1, 2);
-            cart.AddItemToCart(cart.cartItemList, product2, 1);
-            cart.RemoveItemFromCart(cart.cartItemList, product1, 1);
-
+            cart.AddItemToCart(cart.cartItemList, product1, 1);
+            int bill = cart.GetTotalBill();
             //Assert
-            Assert.Equal(2, cart.cartItemList.Count);
+            Assert.Equal(75, bill);
         }
     }
 }
