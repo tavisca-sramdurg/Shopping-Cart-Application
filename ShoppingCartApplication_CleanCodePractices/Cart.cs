@@ -4,6 +4,7 @@ using System.Text;
 
 namespace ShoppingCartApplication_CleanCodePractices
 {
+    //Shopping Cart
     public class Cart 
     {
         public List<ICartItem> cartItemList = new List<ICartItem>();
