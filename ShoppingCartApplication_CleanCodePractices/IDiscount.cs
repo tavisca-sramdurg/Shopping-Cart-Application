@@ -7,5 +7,7 @@ namespace ShoppingCartApplication_CleanCodePractices
     public interface IDiscount
     {
         int DiscountPercentage { get; set; }
+
     }
 }
+  

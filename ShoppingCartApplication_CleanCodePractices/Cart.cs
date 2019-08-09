@@ -62,34 +62,22 @@ namespace ShoppingCartApplication_CleanCodePractices
 
         public int GetTotalBill()
         {
-            int bill = 0;
 
-            Type receivedType = discount.GetType();
-            CategoryDiscount categoryDiscount = new CategoryDiscount(10);
-            Type type = categoryDiscount.GetType();
+            int bill = Bill.CalculateBill(cartItemList, discount);
+            return bill;
+        }
 
-            if (receivedType.Equals(type))
+        public int GetItemPriceByName(string name)
+        {
+            foreach (var item in cartItemList)
             {
-                foreach (var cartItem in cartItemList)
+                if (item.product.Name.Equals(name))
                 {
-                    bill = bill + cartItem.CostOfCartItemWithCategoryDiscount();
+                    //product = item;
+                    return item.product.Price;
                 }
-                return bill;
             }
-            else
-            {
-                foreach (var cartItem in cartItemList)
-                {
-                    bill = bill + cartItem.CostOfCartItemWithoutCategoryDiscount();
-                }
-
-                int costOfCartItemWithDiscount = bill * (100 - discount.DiscountPercentage) / 100;
-                return costOfCartItemWithDiscount;
-            }
-
-           
-
-            
+            return -1;
         }
 
     }
