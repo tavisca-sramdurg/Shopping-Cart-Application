@@ -8,7 +8,7 @@ namespace ShoppingCartTest
 {
     public class TestCartDiscount
     {
-        IProduct product1, product2, product3;
+        Product product1;
 
         Cart cart;
 

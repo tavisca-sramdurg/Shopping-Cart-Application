@@ -6,7 +6,7 @@ namespace ShoppingCartApplication_CleanCodePractices
 {
     public interface ICartItem
     {
-        IProduct product { get; set; }
+        Product product { get; set; }
 
         int Quantity { get; set; }
 

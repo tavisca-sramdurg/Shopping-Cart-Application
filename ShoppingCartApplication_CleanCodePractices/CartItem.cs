@@ -4,12 +4,12 @@ using System.Text;
 
 namespace ShoppingCartApplication_CleanCodePractices
 {
-    public class CartItem /*: ICartItem*/
+    public class CartItem 
     {
-        public IProduct product { get; set; }
+        public Product product { get; private set; }
         public int Quantity { get; set; }
 
-        public CartItem(IProduct product, int quantity)
+        public CartItem(Product product, int quantity)
         {
             this.product = product;
             Quantity = quantity;

@@ -5,18 +5,19 @@ using System.Text;
 namespace ShoppingCartApplication_CleanCodePractices
 {
     //Shopping Cart Application
-    public class Cart 
+    public class Cart
     {
-        public List<CartItem> cartItemList = new List<CartItem>();
+        public List<CartItem> cartItemList { get; private set;}
         public IDiscount discount;
 
         public Cart(IDiscount discount)
         {
             this.discount = discount;
+            cartItemList = new List<CartItem>();
         }
 
 
-        public void AddItemToCart(List<CartItem> cartItemList, IProduct product, int quantity)
+        public void AddItemToCart(List<CartItem> cartItemList, Product product, int quantity)
         {
             bool ItemAlreadyExistsInCart = false;
 
@@ -36,7 +37,7 @@ namespace ShoppingCartApplication_CleanCodePractices
             }
         }
 
-        public void RemoveItemFromCart(List<CartItem> cartItemList, IProduct product, int quantity)
+        public void RemoveItemFromCart(List<CartItem> cartItemList, Product product, int quantity)
         {
             //cartItemList.Remove(cartItem);
             //bool ItemAlreadyExistsInCart = false;

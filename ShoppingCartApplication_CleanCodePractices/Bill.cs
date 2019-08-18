@@ -8,10 +8,10 @@ namespace ShoppingCartApplication_CleanCodePractices
     {
         public static int CalculateBill(List<CartItem> cartItemList, IDiscount discount)
         {
-            int bill = 0;
-            Type receivedType = discount.GetType();
+            int bill = 0;            
             CategoryDiscount categoryDiscount = new CategoryDiscount(10);
             ConfigurableDiscount configurableDiscount = new ConfigurableDiscount();
+            Type receivedType = discount.GetType();
             Type categoryDiscountType = categoryDiscount.GetType();
             Type configurableDiscountType = configurableDiscount.GetType();
 

@@ -6,7 +6,7 @@ namespace ShoppingCartTest
 {
     public class ShoppingCartTest
     {
-        IProduct product1, product2, product3;
+        Product product1, product2;
 
         Cart cart;
 

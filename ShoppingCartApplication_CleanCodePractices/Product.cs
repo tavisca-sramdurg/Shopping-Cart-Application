@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShoppingCartApplication_CleanCodePractices
 {
-    public class Product : IProduct
+    public class Product /*: IProduct*/
     {
         public string Name { get; set; }
         public int Price { get; set; }
